@@ -1,0 +1,44 @@
+Step - 1: Install Requests
+    pip install requests
+
+Step - 2: Import Requests
+
+Step - 3: Get Api link in a variable.
+    city_name = input("Enter the City Name: ")
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}"
+
+Step - 4: Create a variable named api_key and store api key
+    api_key = ""	# Get the api from "www.openweathermap.org/api" and paste your api here
+
+Step - 5: now request the url through the variable named response to get the idea about wheather the url and api is connected successfully or not.
+    response = requests.get(url)
+
+Step - 6: Now check if the response status code is 200 or not, if 200 then it is connected successfully
+    if(response.status_code==200):
+
+Step - 7 Get the whole data coming from the api.
+    if(response.status_code==200):
+    print("Connection Sucessfull!!!")
+    data = response.json()
+    # This prints whole data coming from the API
+    print(data)
+    print("------------------")
+    # This prints whole data of a list named weather
+    print(data['weather'])
+    # This prints a specific index of the list which is a dictionary
+    print(data['weather'][0])
+    # This prints a key value of dictionary inside the weather list description, it tells us about the condition of the weather
+    print("Weather Condition is: ",data['weather'][0]['description'])
+
+    # now printing tempreture
+    print('Current Tempreture is: ', data['main']['temp'])
+    print('Current Tempreture Feels Like: ', data['main']['feels_like'])
+    print("Minimum Tempreture is: ", data['main']['temp_min'])
+    print("Maximum Tempreture is: ", data['main']['temp_max'])
+    print("Pressure is: ", data['main']['pressure'])
+    print("Clouds are: ", data['clouds']['all'])
+    print("Visibility is: ", data['visibility'])
+    print("Humidity is: ", data['main']['humidity'])
+    print("Wind Speed is: ", data['wind']['speed'])
+else:
+    print("You might not wrote the correct city name, Try Again!!!")
